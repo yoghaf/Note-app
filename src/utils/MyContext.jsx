@@ -21,7 +21,7 @@ const Provider = ({ children }) => {
     ],
     Auth: [
       {
-        path: "dashboard",
+        path: "/dashboard/",
         title: "Dashboard",
       },
       {
@@ -80,7 +80,21 @@ const Provider = ({ children }) => {
     }
   };
 
-  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes }}>{children}</Context.Provider>;
+  //addnotes
+  const AddNotes = async (token, datas) => {
+    try {
+      const response = await axios.post(`${url}/notes`, datas, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes, AddNotes }}>{children}</Context.Provider>;
 };
 Provider.propTypes = {
   children: propTypes.node.isRequired,

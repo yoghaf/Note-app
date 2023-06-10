@@ -32,6 +32,7 @@ function Login() {
       setShort(true);
       const responseData = await Login(FieldValue);
       localStorage.setItem("token", responseData.data.accessToken);
+      console.log(responseData);
       if (responseData.status === "success") {
         navigate("/dashboard");
         window.location.reload();
