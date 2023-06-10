@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
         title: "Register",
       },
     ],
-    auth: [
+    Auth: [
       {
         path: "dashboard",
         title: "Dashboard",
@@ -28,13 +28,10 @@ const Provider = ({ children }) => {
         path: "addnote",
         title: "Add Note",
       },
-      {
-        path: "logout",
-        title: "Logout",
-      },
     ],
   };
   const url = import.meta.env.VITE_APP_BASE_URL;
+  //register
   const Register = async (datas) => {
     try {
       const response = await axios.post(`${url}/register`, datas);
@@ -43,8 +40,47 @@ const Provider = ({ children }) => {
       console.log(error);
     }
   };
+  //login
 
-  return <Context.Provider value={{ route, Register }}>{children}</Context.Provider>;
+  const Login = async (datas) => {
+    try {
+      const response = await axios.post(`${url}/login`, datas);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const token = localStorage.getItem("token");
+  // getuser
+  const GetUser = async (token) => {
+    try {
+      const response = await axios.get(`${url}/users/me`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // getnotes
+  const GetNotes = async (token) => {
+    try {
+      const response = await axios.get(`${url}/notes`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes }}>{children}</Context.Provider>;
 };
 Provider.propTypes = {
   children: propTypes.node.isRequired,

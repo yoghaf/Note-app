@@ -2,7 +2,8 @@ import * as Form from "@radix-ui/react-form";
 import { useState } from "react";
 import { Context } from "../utils/MyContext";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+
+import ToastNotif from "../components/Toast";
 function Register() {
   // showpassword
   const [showPassword, setShowPassword] = useState("password");
@@ -15,11 +16,13 @@ function Register() {
     }
   };
   // context
-  const navigate = useNavigate();
+
   const { Register } = useContext(Context);
   const [FieldValue, setFieldValue] = useState({ name: "", email: "", password: "" });
   const [short, setShort] = useState(true);
-
+  const [status, setStatus] = useState("");
+  const [message, setMessage] = useState("");
+  const [open, setOpen] = useState(false);
   const handleChange = (e) => {
     setFieldValue({ ...FieldValue, [e.target.name]: e.target.value });
   };
@@ -32,7 +35,9 @@ function Register() {
       setShort(true);
       console.log(FieldValue);
       const responseData = await Register(FieldValue);
-      if (responseData.status === "succes") navigate("/login");
+      console.log(responseData);
+      setStatus(`Register ${responseData.status}`);
+      setMessage(responseData.message);
     }
   };
 
@@ -47,7 +52,7 @@ function Register() {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <input className="Input" type="text" required onChange={handleChange} />
+            <input className="bg-slate-300 rounded-lg h-5 p-3 " type="text" required onChange={handleChange} />
           </Form.Control>
         </Form.Field>
         <Form.Field className="FormField" name="email">
@@ -61,7 +66,7 @@ function Register() {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <input className="Input" type="email" required onChange={handleChange} />
+            <input className="bg-slate-300 rounded-lg h-5 p-3 " type="email" required onChange={handleChange} />
           </Form.Control>
         </Form.Field>
         <Form.Field className="FormField" name="password">
@@ -70,16 +75,18 @@ function Register() {
             {!short ? <Form.Message className="FormMessage">must be at least 6 characters</Form.Message> : null}
           </div>
           <Form.Control asChild>
-            <input className="Input" type={showPassword} required onChange={handleChange} />
+            <input className="bg-slate-300 rounded-lg h-5 p-3 " type={showPassword} required onChange={handleChange} />
           </Form.Control>
           <button className="text-black font-medium cursor-pointer hover:text-blue-500" onClick={handleShowPassword}>
             Show Password
           </button>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="w-full bg-black rounded-lg h-10 text-white flex items-center justify-center hover:bg-blue-500" type="submit">
-            Register
-          </button>
+          <ToastNotif text="mamat" open={open} setOpen={setOpen} success={status} message={message}>
+            <button onClick={() => setOpen(true)} className="w-full bg-black rounded-lg h-10 text-white flex items-center justify-center hover:bg-blue-500" type="submit">
+              Register
+            </button>
+          </ToastNotif>
         </Form.Submit>
       </Form.Root>
     </div>
