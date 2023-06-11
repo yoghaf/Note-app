@@ -37,7 +37,7 @@ const Nav = ({ route }) => {
         {route.Auth.map((item, index) => {
           return (
             <NavigationMenu.Item key={index}>
-              <Link className="NavigationMenuLink" to={item.path}>
+              <Link className="NavigationMenuLink active:text-black" to={item.path}>
                 {item.title}
               </Link>
             </NavigationMenu.Item>

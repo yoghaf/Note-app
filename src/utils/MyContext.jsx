@@ -28,6 +28,14 @@ const Provider = ({ children }) => {
         path: "addnote",
         title: "Add Note",
       },
+      {
+        path: "notes",
+        title: "List Notes",
+      },
+      {
+        path: "archivednotes",
+        title: "Archived Notes",
+      },
     ],
   };
   const url = import.meta.env.VITE_APP_BASE_URL;
@@ -79,7 +87,19 @@ const Provider = ({ children }) => {
       console.log(error);
     }
   };
-
+  //getsinglenote
+  const GetSingleNote = async (token, id) => {
+    try {
+      const response = await axios.get(`${url}/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   //addnotes
   const AddNotes = async (token, datas) => {
     try {
@@ -93,8 +113,47 @@ const Provider = ({ children }) => {
       console.log(error);
     }
   };
+  // archive notes
+  const ArchivedNotes = async (token) => {
+    try {
+      const response = await axios.get(`${url}/notes/archived`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // ArchiveNote
+  const ArchiveNote = async (token, id) => {
+    try {
+      const response = await axios.post(`${url}/notes/${id}/archive`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // delete note
+  const DeleteNote = async (token, id) => {
+    try {
+      const response = await axios.delete(`${url}/notes/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes, AddNotes }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes, GetSingleNote, AddNotes, ArchivedNotes, ArchiveNote, DeleteNote }}>{children}</Context.Provider>;
 };
 Provider.propTypes = {
   children: propTypes.node.isRequired,

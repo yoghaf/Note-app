@@ -19,7 +19,6 @@ function ToastNotif({ success, message, open, setOpen, children }) {
 }
 ToastNotif.propTypes = {
   children: propTypes.node,
-  text: propTypes.string,
   open: propTypes.bool,
   setOpen: propTypes.func,
   success: propTypes.string,

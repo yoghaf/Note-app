@@ -82,7 +82,7 @@ function Register() {
           </button>
         </Form.Field>
         <Form.Submit asChild>
-          <ToastNotif text="mamat" open={open} setOpen={setOpen} success={status} message={message}>
+          <ToastNotif open={open} setOpen={setOpen} success={status} message={message}>
             <button onClick={() => setOpen(true)} className="w-full bg-black rounded-lg h-10 text-white flex items-center justify-center hover:bg-blue-500" type="submit">
               Register
             </button>

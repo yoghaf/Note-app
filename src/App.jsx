@@ -8,6 +8,8 @@ import { Context } from "./utils/MyContext";
 import { useContext } from "react";
 import NoteList from "./pages/dashboard/NoteList";
 import AddNote from "./pages/dashboard/AddNote";
+import ArchivedNotes from "./pages/dashboard/ArchivedNotes";
+import DetailNote from "./pages/dashboard/DetailNote";
 
 function App() {
   const { token } = useContext(Context);
@@ -30,8 +32,11 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/dashboard/" element={<Dashboard />}>
-          <Route index element={<NoteList />} />
+          <Route index element={<NoteApp />} />
           <Route path="addnote" element={<AddNote />} />
+          <Route path="notes" element={<NoteList />} />
+          <Route path="archivednotes" element={<ArchivedNotes />} />
+          <Route path="detail/:id" element={<DetailNote />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -12,16 +12,14 @@ function AddNote() {
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFields({ ...Fields, [e.target.name]: e.target.value });
-    console.log(Fields);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(Fields);
+
     const responseData = await AddNotes(token, Fields);
-    console.log(responseData);
+
     if (responseData.status === "success") {
-      navigate("/dashboard");
-      window.location.reload();
+      navigate("/dashboard/notes");
     }
   };
 
