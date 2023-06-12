@@ -5,7 +5,7 @@ import { Context } from "../utils/MyContext";
 import { useContext } from "react";
 
 const Nav = ({ route }) => {
-  const { token } = useContext(Context);
+  const { token, isDark } = useContext(Context);
   const navigate = useNavigate();
   const handleClick = () => {
     localStorage.removeItem("token");
@@ -15,12 +15,12 @@ const Nav = ({ route }) => {
 
   if (!token) {
     return (
-      <NavigationMenu.Root className="NavigationMenuRoot mt-5">
-        <NavigationMenu.List className="NavigationMenuList ">
+      <NavigationMenu.Root className={`w-full  flex justify-center mt-5 `}>
+        <NavigationMenu.List className={`border-2 flex p-2 rounded-xl drop-shadow-md ${isDark ? "bg-black" : "bg-white border-gray-300 "}`}>
           {route.noAuth.map((item, index) => {
             return (
-              <NavigationMenu.Item key={index}>
-                <Link className="NavigationMenuLink" to={item.path}>
+              <NavigationMenu.Item className={` flex justify-center rounded-lg mr-1 font-medium ${!isDark ? "hover:bg-slate-500" : "hover:bg-slate-200"}`} key={index}>
+                <Link className="p-2" to={item.path}>
                   {item.title}
                 </Link>
               </NavigationMenu.Item>
@@ -32,19 +32,19 @@ const Nav = ({ route }) => {
   }
 
   return (
-    <NavigationMenu.Root className="NavigationMenuRoot mt-5">
-      <NavigationMenu.List className="NavigationMenuList ">
+    <NavigationMenu.Root className={`w-full  flex justify-center mt-5 `}>
+      <NavigationMenu.List className={`border-2 flex p-2 rounded-xl drop-shadow-md ${isDark ? "bg-black" : "bg-white border-gray-300 "}`}>
         {route.Auth.map((item, index) => {
           return (
-            <NavigationMenu.Item key={index}>
-              <Link className="NavigationMenuLink active:text-black" to={item.path}>
+            <NavigationMenu.Item className={` flex justify-center rounded-lg mr-1 font-medium ${isDark ? "hover:bg-slate-500" : "hover:bg-slate-200"}`} key={index}>
+              <Link className="p-2" to={item.path}>
                 {item.title}
               </Link>
             </NavigationMenu.Item>
           );
         })}
-        <NavigationMenu.Item>
-          <button onClick={handleClick} className="NavigationMenuLink">
+        <NavigationMenu.Item className={`flex justify-center  rounded-lg mr-1 font-medium ${isDark ? "hover:bg-slate-500" : "hover:bg-slate-200"}`}>
+          <button onClick={handleClick} className="p-2">
             Logout
           </button>
         </NavigationMenu.Item>

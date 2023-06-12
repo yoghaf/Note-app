@@ -10,6 +10,7 @@ import NoteList from "./pages/dashboard/NoteList";
 import AddNote from "./pages/dashboard/AddNote";
 import ArchivedNotes from "./pages/dashboard/ArchivedNotes";
 import DetailNote from "./pages/dashboard/DetailNote";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const { token } = useContext(Context);
@@ -37,6 +38,7 @@ function App() {
           <Route path="notes" element={<NoteList />} />
           <Route path="archivednotes" element={<ArchivedNotes />} />
           <Route path="detail/:id" element={<DetailNote />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

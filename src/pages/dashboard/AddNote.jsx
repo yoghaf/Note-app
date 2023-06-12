@@ -8,7 +8,7 @@ function AddNote() {
     title: "",
     body: "",
   });
-  const { token, AddNotes } = useContext(Context);
+  const { token, AddNotes, isDark } = useContext(Context);
   const navigate = useNavigate();
   const handleChange = (e) => {
     setFields({ ...Fields, [e.target.name]: e.target.value });
@@ -24,7 +24,7 @@ function AddNote() {
   };
 
   return (
-    <div className="flex justify-center p-10 ">
+    <div className="flex justify-center p-5">
       <Form.Root className="FormRoot" onSubmit={handleSubmit}>
         <Form.Field className="FormField" name="title">
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between" }}>
@@ -34,7 +34,7 @@ function AddNote() {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <input className="bg-slate-300 rounded-lg h-5 p-3 " type="text" required onChange={handleChange} />
+            <input className={` rounded-lg h-5 p-3 ${isDark ? "text-black bg-yellow-200" : "bg-slate-300"}`} type="text" required onChange={handleChange} />
           </Form.Control>
         </Form.Field>
         <Form.Field className="FormField" name="body">
@@ -45,11 +45,15 @@ function AddNote() {
             </Form.Message>
           </div>
           <Form.Control asChild>
-            <input className="bg-slate-300 rounded-lg h-20 p-3" type="text" required onChange={handleChange} />
+            <input className={` rounded-lg h-20 p-3 ${isDark ? "text-black bg-yellow-200" : "bg-slate-300"}`} type="text" required onChange={handleChange} />
           </Form.Control>
         </Form.Field>
         <Form.Submit asChild>
-          <button className="w-full bg-black rounded-lg h-10 text-white flex items-center justify-center hover:bg-blue-500" type="submit">
+          <button
+            className={`w-full rounded-lg h-10 flex font-medium items-center justify-center " type="submit
+          ${isDark ? " bg-white text-black hover:bg-yellow-300" : " bg-black text-white hover:bg-blue-500"}`}
+            type="submit"
+          >
             Create Note
           </button>
         </Form.Submit>

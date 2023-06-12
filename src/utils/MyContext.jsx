@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import propTypes from "prop-types";
+import { useState } from "react";
 import axios from "axios";
 const Context = createContext();
 
@@ -152,8 +153,13 @@ const Provider = ({ children }) => {
       console.log(error);
     }
   };
+  const [isDark, setIsDark] = useState(false);
+  const DarkMode = () => {
+    const body = document.querySelector("body");
+    body.classList.toggle("DarkMode");
+  };
 
-  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes, GetSingleNote, AddNotes, ArchivedNotes, ArchiveNote, DeleteNote }}>{children}</Context.Provider>;
+  return <Context.Provider value={{ route, Register, Login, token, GetUser, GetNotes, GetSingleNote, AddNotes, ArchivedNotes, ArchiveNote, DeleteNote, DarkMode, isDark, setIsDark }}>{children}</Context.Provider>;
 };
 Provider.propTypes = {
   children: propTypes.node.isRequired,
