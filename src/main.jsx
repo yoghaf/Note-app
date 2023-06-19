@@ -6,9 +6,9 @@ import "./index.css";
 import { Provider } from "./utils/MyContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <Provider>
-    <React.StrictMode>
+  <React.StrictMode>
+    <Provider>
       <App />
-    </React.StrictMode>
-  </Provider>
+    </Provider>
+  </React.StrictMode>
 );

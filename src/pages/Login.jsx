@@ -34,7 +34,7 @@ function Login() {
       localStorage.setItem("token", responseData.data.accessToken);
       console.log(responseData);
       if (responseData.status === "success") {
-        navigate("/dashboard");
+        navigate("/");
         window.location.reload();
       }
     }

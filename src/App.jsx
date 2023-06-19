@@ -32,7 +32,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/dashboard/" element={<Dashboard />}>
+        <Route path="/" element={<Dashboard />}>
+          {/* Rute-rute di dalam Dashboard */}
           <Route index element={<NoteApp />} />
           <Route path="addnote" element={<AddNote />} />
           <Route path="notes" element={<NoteList />} />

@@ -22,7 +22,7 @@ const Provider = ({ children }) => {
     ],
     Auth: [
       {
-        path: "/dashboard/",
+        path: "/",
         title: "Dashboard",
       },
       {
