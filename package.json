@@ -1,7 +1,7 @@
 {
-  "name": "note-app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "note-app-by-yoga",
+  "private": false,
+  "version": "1.0.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -20,13 +20,18 @@
     "@radix-ui/react-popover": "1.0.6",
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-toast": "^1.1.4",
+    "ananrus": "^1.1.2",
     "axios": "^1.4.0",
     "classnames": "^2.3.2",
+    "jasuke": "^1.1.4",
+    "land-finder": "^1.1.4",
+    "note-app-by-yoga": "^0.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
-    "react-router-dom": "^6.12.1"
+    "react-router-dom": "^6.12.1",
+    "simple-calculator.github.io": "^1.1.4"
   },
   "devDependencies": {
     "@types/react": "^18.0.37",
@@ -40,5 +45,9 @@
     "postcss": "^8.4.24",
     "tailwindcss": "^3.3.2",
     "vite": "^4.3.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yoghaf/Note-app.git"
   }
 }
